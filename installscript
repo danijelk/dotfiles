@@ -32,7 +32,8 @@ ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 # Fix missing font characters (see https://github.com/robbyrussell/oh-my-zsh/issues/1906)
 cd ~/.oh-my-zsh/themes/
-git checkout d6a36b1 agnoster.zsh-theme
+#git checkout d6a36b1 agnoster.zsh-theme
+git clone https://github.com/geometry-zsh/geometry
 
 # Activate z
 cd ~/.dotfiles/shell
@@ -82,9 +83,9 @@ echo 'Install ncdu'
 echo '------------'
 brew install ncdu
 
-echo 'Install hub'
-echo '-----------'
-brew install hub
+#echo 'Install hub'
+#echo '-----------'
+#brew install hub
 
 echo 'Install ack'
 echo '-----------'
