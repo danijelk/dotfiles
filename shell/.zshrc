@@ -15,7 +15,7 @@ DEFAULT_USER=`whoami`
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git laravel4 laravel5 composer osx docker)
+plugins=(git laravel4 laravel5 composer osx docker zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,7 +78,7 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 ssh-add -A 2>/dev/null;
 
 # Setup xdebug
-export XDEBUG_CONFIG="idekey=PHPSTORM"
+#export XDEBUG_CONFIG="idekey=PHPSTORM"
 
 # Enable autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -88,5 +88,3 @@ export PATH=/usr/local/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH="/usr/local/opt/node@8/bin:$PATH"
-
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
