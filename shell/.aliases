@@ -80,5 +80,5 @@ alias npmspatie="npm config set registry https://npm.spatie.be"
 alias k="kubectl"
 
 # Restart crashed sound
-sudo launchctl stop com.apple.audio.coreaudiod && sudo launchctl start com.apple.audio.coreaudiod
+alias restartsound="sudo launchctl stop com.apple.audio.coreaudiod && sudo launchctl start com.apple.audio.coreaudiod"
 
