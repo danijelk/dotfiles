@@ -36,7 +36,7 @@ alias git_delete_upstream='git push gitlab --delete'
 alias o="open ."
 
 # List all files colorized in long format
-alias l="ls -laF"
+alias l="ls -laFh"
 
 # PhPStorm
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
@@ -78,7 +78,12 @@ alias npmspatie="npm config set registry https://npm.spatie.be"
 
 # K8S
 alias k="kubectl"
+alias latest_ami=" aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.18/amazon-linux-2/recommended/image_id --region eu-central-1 --query "Parameter.Value" --output text"
 
 # Restart crashed sound
 alias restartsound="sudo launchctl stop com.apple.audio.coreaudiod && sudo launchctl start com.apple.audio.coreaudiod"
 
+
+# Docker
+alias docker-composer='docker-compose'
+alias do-c='docker-compose'
