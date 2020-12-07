@@ -23,10 +23,6 @@ ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
 rm $HOME/.vim
 ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
 
-# Symlink yarn prefs
-rm $HOME/.yarnrc
-ln -s $HOME/.dotfiles/shell/.yarnrc $HOME/.yarnrc
-
 # Symlink the Mackup config
 ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
@@ -39,23 +35,26 @@ git clone https://github.com/geometry-zsh/geometry
 cd ~/.dotfiles/shell
 chmod +x z.sh
 
+echo 'Configure npm'
+echo '-------------'
+# Create a directory for global packages and tell npm where to store globally installed packages
+mkdir "${HOME}/.npm-packages"
+npm config set prefix "${HOME}/.npm-packages"
+
 echo 'Install composer'
 echo '----------------'
-cd ~/.dotfiles
-EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
+EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
-
-if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
+ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]
 then
-    echo 'ERROR: Invalid Composer installer signature'
+    >&2 echo 'ERROR: Invalid installer checksum'
     rm composer-setup.php
-else
-    php composer-setup.php --quiet
-    rm composer-setup.php
-    echo 'move composer to /usr/local/bin/composer'
-    sudo mv -f composer.phar /usr/local/bin/composer
+    exit 1
 fi
+php composer-setup.php
+rm composer-setup.php
+mv composer.phar /usr/local/bin/composer
 
 echo 'Install homebrew'
 echo '----------------'
@@ -64,7 +63,7 @@ sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo 'Install node'
-echo '-----------'
+echo '------------'
 brew install node@8
 
 echo 'Install pkg-config'
@@ -106,10 +105,9 @@ brew cask install --force qlcolorcode qlstephen qlmarkdown quicklook-json qlpret
 
 echo 'Install php'
 echo '-----------'
-brew install php@7.0
-brew install php@7.1
-brew install php@7.2
-brew install php@7.3
+brew install php@7.4
+brew install php@8.0
+
 
 echo 'Install imagemagick'
 echo '-------------------'
@@ -133,7 +131,7 @@ pecl install redis
 
 echo 'Install laravel envoy'
 echo '---------------------'
-composer global require "laravel/envoy=~1.0"
+composer global require "laravel/envoy=~2.0"
 
 echo 'Install phpunit-watcher'
 echo '-----------------------'
@@ -150,8 +148,8 @@ valet install
 
 echo 'Install mysql'
 echo '-------------'
-brew install mysql@5.7
-brew services start mysql@5.7
+brew install mysql
+brew services start mysql
 
 echo 'Install yarn'
 echo '------------'
