@@ -4,6 +4,7 @@ alias phpunitw="phpunit-watcher watch"
 alias a="php artisan"
 alias c="composer"
 alias cu="composer update"
+alias co="composer outdated"
 alias cr="composer require"
 alias ci="composer install"
 alias cda="composer dump-autoload -o"
@@ -84,7 +85,7 @@ alias touchbar="killall ControlStrip"
 
 # K8S
 alias k="kubectl"
-alias latest_ami=" aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.18/amazon-linux-2/recommended/image_id --region eu-central-1 --query "Parameter.Value" --output text"
+alias aws_latest_ami=" aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.19/amazon-linux-2/recommended/image_id --region eu-central-1 --query "Parameter.Value" --output text"
 
 # Restart crashed sound
 alias restartsound="sudo launchctl stop com.apple.audio.coreaudiod && sudo launchctl start com.apple.audio.coreaudiod"

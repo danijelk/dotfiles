@@ -130,3 +130,7 @@ function silent() {
    "$@" >& /dev/null
 }
 
+arm() {
+  arch -x86_64 $@
+}
+
